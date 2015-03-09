@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="sale_report_generator">
+            <field name="name">Sales Report Generator</field>
+            <field name="model">sale.report.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="">
+		    <group>
+		        <field name="date_from" />
+		        <field name="date_to" />
+		        <field name="report" />
+			<field name="format" />
+			<field name="show_detail" attrs="{'invisible': [('format', '=', 'iif')]}" />
+		    </group>
+                    <group>
+                        <button icon="gtk-cancel" special="cancel"
+                            string="Cancel" />
+                        <button name="execute_report" string="Run Report"
+                            type="object" icon="gtk-ok" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_run_sale_reports" model="ir.actions.act_window">
+            <field name="name">Run Sales Reports</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.report.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+          action="action_run_sale_reports"
+          id="menu_sales_reports"
+          parent="account.menu_finance_entries"/>
+
+    </data>
+</openerp>
