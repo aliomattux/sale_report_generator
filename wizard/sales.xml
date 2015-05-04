@@ -14,11 +14,13 @@
 		        <field name="report" />
 			<field name="format" />
 			<field name="show_detail" attrs="{'invisible': [('format', '=', 'iif')]}" />
+			<field name="brand" attrs="{'invisible': [('report', 'not in', ('customers','top_items','customers_brand'))]}" />
+			<field name="record_limit" attrs="{'invisible': [('report', 'not in', ('customers','top_items','customers_brand'))]}" />
 		    </group>
                     <group>
                         <button icon="gtk-cancel" special="cancel"
                             string="Cancel" />
-                        <button name="execute_report" string="Run Report"
+                        <button name="prepare_and_send_report" string="Run Report"
                             type="object" icon="gtk-ok" />
                     </group>
                 </form>
